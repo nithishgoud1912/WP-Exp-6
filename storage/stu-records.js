@@ -6,8 +6,8 @@ window.studentsData = [
         dept: "Computer Science",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
         activities: [
-            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Secured Gold Medal in a 48-hour AI marathon. Developed a scalable inventory system.", proof: "record.pdf" },
-            { title: "Open Source Contributor", category: "Technical", date: "Feb 05, 2024", description: "Merged 15+ PRs in major React libraries.", proof: "abhinay-record.pdf" }
+            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Secured Gold Medal in a 48-hour AI marathon. Developed a scalable inventory system.", proof: "storage/cert1.pdf" },
+            { title: "Open Source Contributor", category: "Technical", date: "Feb 05, 2024", description: "Merged 15+ PRs in major React libraries.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -17,7 +17,7 @@ window.studentsData = [
         dept: "Environmental Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
         activities: [
-            { title: "Green Campus Drive", category: "Non-Technical", date: "Feb 05, 2024", description: "Successfully led the reforestation movement by planting 500+ indigenous trees.", proof: "record.pdf" }
+            { title: "Green Campus Drive", category: "Non-Technical", date: "Feb 05, 2024", description: "Successfully led the reforestation movement by planting 500+ indigenous trees.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -27,8 +27,8 @@ window.studentsData = [
         dept: "Architecture & Design",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
         activities: [
-            { title: "Modern Arts Exposition", category: "Cultural", date: "April 01, 2024", description: "Curated a digital gallery featuring 45 student photographers.", proof: "abhinay-record.pdf" },
-            { title: "Urban Sketching Award", category: "Cultural", date: "Dec 15, 2023", description: "First prize in city-wide landscape sketching competition.", proof: "record.pdf" }
+            { title: "Modern Arts Exposition", category: "Cultural", date: "April 01, 2024", description: "Curated a digital gallery featuring 45 student photographers.", proof: "storage/cert1.pdf" },
+            { title: "Urban Sketching Award", category: "Cultural", date: "Dec 15, 2023", description: "First prize in city-wide landscape sketching competition.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -38,8 +38,8 @@ window.studentsData = [
         dept: "Political Science",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
         activities: [
-            { title: "Model United Nations", category: "Non-Technical", date: "May 15, 2024", description: "Nominated as 'Outstanding Delegate' at Global MUN 2024.", proof: "record.pdf" },
-            { title: "Debate Championship", category: "Cultural", date: "March 22, 2024", description: "Finalist in the Inter-State Bilingual Debate.", proof: "abhinay-record.pdf" }
+            { title: "Model United Nations", category: "Non-Technical", date: "May 15, 2024", description: "Nominated as 'Outstanding Delegate' at Global MUN 2024.", proof: "storage/cert4.pdf" },
+            { title: "Debate Championship", category: "Cultural", date: "March 22, 2024", description: "Finalist in the Inter-State Bilingual Debate.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -49,7 +49,7 @@ window.studentsData = [
         dept: "Social Work",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kevin",
         activities: [
-            { title: "Food for All Initiative", category: "Non-Technical", date: "Feb 28, 2024", description: "Organized a drive distributing 2,500+ meals.", proof: "record.pdf" }
+            { title: "Food for All Initiative", category: "Non-Technical", date: "Feb 28, 2024", description: "Organized a drive distributing 2,500+ meals.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -59,7 +59,7 @@ window.studentsData = [
         dept: "Computer Science",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul",
         activities: [
-            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Built an IoT based crop monitoring system.", proof: "abhinay-record.pdf" }
+            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Built an IoT based crop monitoring system.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -69,7 +69,7 @@ window.studentsData = [
         dept: "Information Technology",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Priya",
         activities: [
-            { title: "Code for Good", category: "Technical", date: "July 12, 2024", description: "Built an accessibility tool for visually impaired.", proof: "record.pdf" }
+            { title: "Code for Good", category: "Technical", date: "July 12, 2024", description: "Built an accessibility tool for visually impaired.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -79,8 +79,8 @@ window.studentsData = [
         dept: "Mechanical Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Amit",
         activities: [
-            { title: "Robotics Workshop", category: "Technical", date: "Jan 10, 2024", description: "Designed an automated line following robot.", proof: "abhinay-record.pdf" },
-            { title: "Annual Sports Meet - Football", category: "Non-Technical", date: "Feb 20, 2024", description: "Captain of the winning team.", proof: "record.pdf" }
+            { title: "Robotics Workshop", category: "Technical", date: "Jan 10, 2024", description: "Designed an automated line following robot.", proof: "storage/cert2.pdf" },
+            { title: "Annual Sports Meet - Football", category: "Non-Technical", date: "Feb 20, 2024", description: "Captain of the winning team.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -90,7 +90,7 @@ window.studentsData = [
         dept: "Electronics",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Neha",
         activities: [
-            { title: "Dance Fest 2024", category: "Cultural", date: "Dec 31, 2023", description: "Winner of the classical dance solo performance.", proof: "record.pdf" }
+            { title: "Dance Fest 2024", category: "Cultural", date: "Dec 31, 2023", description: "Winner of the classical dance solo performance.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -100,8 +100,8 @@ window.studentsData = [
         dept: "Civil Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Vikram",
         activities: [
-            { title: "Bridge Design Competition", category: "Technical", date: "Oct 15, 2023", description: "Runner up in national level bridge design.", proof: "abhinay-record.pdf" },
-            { title: "NCC Camp", category: "Non-Technical", date: "Jan 26, 2024", description: "Best cadet award in Republic day camp.", proof: "record.pdf" }
+            { title: "Bridge Design Competition", category: "Technical", date: "Oct 15, 2023", description: "Runner up in national level bridge design.", proof: "storage/cert2.pdf" },
+            { title: "NCC Camp", category: "Non-Technical", date: "Jan 26, 2024", description: "Best cadet award in Republic day camp.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -111,8 +111,8 @@ window.studentsData = [
         dept: "Bio-Technology",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Anjali",
         activities: [
-            { title: "National Science Conference", category: "Technical", date: "May 20, 2023", description: "Presented research on enzyme kinetics.", proof: "record.pdf" },
-            { title: "Inter-College Singing", category: "Cultural", date: "Sept 14, 2023", description: "Secured runner-up in solo classical singing.", proof: "abhinay-record.pdf" }
+            { title: "National Science Conference", category: "Technical", date: "May 20, 2023", description: "Presented research on enzyme kinetics.", proof: "storage/cert1.pdf" },
+            { title: "Inter-College Singing", category: "Cultural", date: "Sept 14, 2023", description: "Secured runner-up in solo classical singing.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -122,8 +122,8 @@ window.studentsData = [
         dept: "Computer Science",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rohan",
         activities: [
-            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Developed an AI chatbot for rural education.", proof: "record.pdf" },
-            { title: "Cybersecurity CTF", category: "Technical", date: "August 01, 2023", description: "Ranked top 10% in Capture The Flag event.", proof: "abhinay-record.pdf" }
+            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Developed an AI chatbot for rural education.", proof: "storage/cert4.pdf" },
+            { title: "Cybersecurity CTF", category: "Technical", date: "August 01, 2023", description: "Ranked top 10% in Capture The Flag event.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -133,7 +133,7 @@ window.studentsData = [
         dept: "Architecture & Design",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ishita",
         activities: [
-            { title: "Street Play Competition", category: "Cultural", date: "Nov 05, 2023", description: "Lead actress in award-winning social awareness street play.", proof: "record.pdf" }
+            { title: "Street Play Competition", category: "Cultural", date: "Nov 05, 2023", description: "Lead actress in award-winning social awareness street play.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -143,8 +143,8 @@ window.studentsData = [
         dept: "Electrical Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kartik",
         activities: [
-            { title: "Solar Car Workshop", category: "Technical", date: "April 18, 2024", description: "Co-designer of the college's first solar-powered EV.", proof: "abhinay-record.pdf" },
-            { title: "Volleyball Tournament", category: "Non-Technical", date: "Oct 11, 2023", description: "Best server of the tournament.", proof: "record.pdf" }
+            { title: "Solar Car Workshop", category: "Technical", date: "April 18, 2024", description: "Co-designer of the college's first solar-powered EV.", proof: "storage/cert4.pdf" },
+            { title: "Volleyball Tournament", category: "Non-Technical", date: "Oct 11, 2023", description: "Best server of the tournament.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -154,8 +154,8 @@ window.studentsData = [
         dept: "Business Administration",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Simran",
         activities: [
-            { title: "B-Plan Pitch Deck", category: "Technical", date: "June 15, 2024", description: "Won seed funding for 'Agri-Tech' startup idea.", proof: "record.pdf" },
-            { title: "Fashion Show Organiser", category: "Cultural", date: "Feb 10, 2024", description: "Head coordinator for the annual cultural fashion night.", proof: "abhinay-record.pdf" }
+            { title: "B-Plan Pitch Deck", category: "Technical", date: "June 15, 2024", description: "Won seed funding for 'Agri-Tech' startup idea.", proof: "storage/cert2.pdf" },
+            { title: "Fashion Show Organiser", category: "Cultural", date: "Feb 10, 2024", description: "Head coordinator for the annual cultural fashion night.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -165,7 +165,7 @@ window.studentsData = [
         dept: "Mechanical Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Faizan",
         activities: [
-            { title: "SAE Baja Event", category: "Technical", date: "Jan 22, 2024", description: "Driver for the college ATV team.", proof: "record.pdf" }
+            { title: "SAE Baja Event", category: "Technical", date: "Jan 22, 2024", description: "Driver for the college ATV team.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -175,8 +175,8 @@ window.studentsData = [
         dept: "Information Technology",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Tanya",
         activities: [
-            { title: "Blood Donation Camp", category: "Non-Technical", date: "Aug 15, 2023", description: "Lead organizer, gathered over 300+ donors.", proof: "abhinay-record.pdf" },
-            { title: "State Level Essay Writing", category: "Cultural", date: "Dec 01, 2023", description: "First prize for essay on 'Digital India'.", proof: "record.pdf" }
+            { title: "Blood Donation Camp", category: "Non-Technical", date: "Aug 15, 2023", description: "Lead organizer, gathered over 300+ donors.", proof: "storage/cert2.pdf" },
+            { title: "State Level Essay Writing", category: "Cultural", date: "Dec 01, 2023", description: "First prize for essay on 'Digital India'.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -186,8 +186,8 @@ window.studentsData = [
         dept: "Civil Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aman",
         activities: [
-            { title: "Concrete Canoe Race", category: "Technical", date: "March 05, 2024", description: "Built and raced a buoyant concrete canoe.", proof: "record.pdf" },
-            { title: "Inter-department Chess", category: "Non-Technical", date: "Sept 20, 2023", description: "College chess champion.", proof: "abhinay-record.pdf" }
+            { title: "Concrete Canoe Race", category: "Technical", date: "March 05, 2024", description: "Built and raced a buoyant concrete canoe.", proof: "storage/cert1.pdf" },
+            { title: "Inter-department Chess", category: "Non-Technical", date: "Sept 20, 2023", description: "College chess champion.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -197,8 +197,8 @@ window.studentsData = [
         dept: "Electronics",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ritika",
         activities: [
-            { title: "IoT Innovation Expo", category: "Technical", date: "July 12, 2023", description: "Showcased a smart health tracking device.", proof: "record.pdf" },
-            { title: "Classical Dance Group", category: "Cultural", date: "Oct 24, 2023", description: "Lead dancer in traditional folklore act.", proof: "abhinay-record.pdf" }
+            { title: "IoT Innovation Expo", category: "Technical", date: "July 12, 2023", description: "Showcased a smart health tracking device.", proof: "storage/cert4.pdf" },
+            { title: "Classical Dance Group", category: "Cultural", date: "Oct 24, 2023", description: "Lead dancer in traditional folklore act.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -208,9 +208,9 @@ window.studentsData = [
         dept: "Computer Science",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Varun",
         activities: [
-            { title: "Codeforces Round 900", category: "Technical", date: "Feb 10, 2024", description: "Global Rank top 500 in competitive programming.", proof: "record.pdf" },
-            { title: "AI Research Paper", category: "Technical", date: "May 10, 2024", description: "Published a paper in IEEE on Neuromorphic computing.", proof: "abhinay-record.pdf" },
-            { title: "Youth Parliament", category: "Non-Technical", date: "June 25, 2023", description: "Faux Minister of IT. Best speaker award.", proof: "record.pdf" }
+            { title: "Codeforces Round 900", category: "Technical", date: "Feb 10, 2024", description: "Global Rank top 500 in competitive programming.", proof: "storage/cert2.pdf" },
+            { title: "AI Research Paper", category: "Technical", date: "May 10, 2024", description: "Published a paper in IEEE on Neuromorphic computing.", proof: "storage/cert4.pdf" },
+            { title: "Youth Parliament", category: "Non-Technical", date: "June 25, 2023", description: "Faux Minister of IT. Best speaker award.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -220,7 +220,7 @@ window.studentsData = [
         dept: "Social Work",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Pooja",
         activities: [
-            { title: "Women Empowerment Drive", category: "Non-Technical", date: "March 08, 2024", description: "Conducted workshops in 5 rural villages.", proof: "record.pdf" }
+            { title: "Women Empowerment Drive", category: "Non-Technical", date: "March 08, 2024", description: "Conducted workshops in 5 rural villages.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -230,7 +230,7 @@ window.studentsData = [
         dept: "Electronics",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Saurabh",
         activities: [
-            { title: "Stand-Up Comedy Evening", category: "Cultural", date: "Dec 20, 2023", description: "Won 'Best Comic' at intra-college fest.", proof: "abhinay-record.pdf" }
+            { title: "Stand-Up Comedy Evening", category: "Cultural", date: "Dec 20, 2023", description: "Won 'Best Comic' at intra-college fest.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -240,8 +240,8 @@ window.studentsData = [
         dept: "Information Technology",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Karan",
         activities: [
-            { title: "AWS Cloud Bootcamp", category: "Technical", date: "Aug 22, 2023", description: "Certified AWS Solutions Architect.", proof: "record.pdf" },
-            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Developed dynamic routing algorithm for logistics mobility.", proof: "abhinay-record.pdf" }
+            { title: "AWS Cloud Bootcamp", category: "Technical", date: "Aug 22, 2023", description: "Certified AWS Solutions Architect.", proof: "storage/cert1.pdf" },
+            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Developed dynamic routing algorithm for logistics mobility.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -251,8 +251,8 @@ window.studentsData = [
         dept: "Bio-Technology",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Naina",
         activities: [
-            { title: "Bio-Waste Management Event", category: "Non-Technical", date: "Jun 05, 2024", description: "Started a zero-waste campus campaign.", proof: "record.pdf" },
-            { title: "Face Painting Contest", category: "Cultural", date: "Feb 14, 2024", description: "Theme winner: Abstract Extraterrestrial flora.", proof: "abhinay-record.pdf" }
+            { title: "Bio-Waste Management Event", category: "Non-Technical", date: "Jun 05, 2024", description: "Started a zero-waste campus campaign.", proof: "storage/cert4.pdf" },
+            { title: "Face Painting Contest", category: "Cultural", date: "Feb 14, 2024", description: "Theme winner: Abstract Extraterrestrial flora.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -262,7 +262,7 @@ window.studentsData = [
         dept: "Architecture & Design",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Zoya",
         activities: [
-            { title: "Green Architecture Summit", category: "Technical", date: "March 30, 2024", description: "Presented a 3D model of self-sustaining residential towers.", proof: "record.pdf" }
+            { title: "Green Architecture Summit", category: "Technical", date: "March 30, 2024", description: "Presented a 3D model of self-sustaining residential towers.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -272,7 +272,7 @@ window.studentsData = [
         dept: "Civil Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Meera",
         activities: [
-            { title: "AutoCAD Masters Series", category: "Technical", date: "July 02, 2023", description: "Designed an earthquake resistant commercial blueprint.", proof: "abhinay-record.pdf" }
+            { title: "AutoCAD Masters Series", category: "Technical", date: "July 02, 2023", description: "Designed an earthquake resistant commercial blueprint.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -282,8 +282,8 @@ window.studentsData = [
         dept: "Electronics",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Pranav",
         activities: [
-            { title: "Robo-Wars 2023", category: "Technical", date: "Nov 14, 2023", description: "Runner-up in heavy-weight combat robotics.", proof: "record.pdf" },
-            { title: "Drama Club", category: "Cultural", date: "Dec 05, 2023", description: "Supporting role in Shakespeare's Macbeth.", proof: "abhinay-record.pdf" }
+            { title: "Robo-Wars 2023", category: "Technical", date: "Nov 14, 2023", description: "Runner-up in heavy-weight combat robotics.", proof: "storage/cert1.pdf" },
+            { title: "Drama Club", category: "Cultural", date: "Dec 05, 2023", description: "Supporting role in Shakespeare's Macbeth.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -293,7 +293,7 @@ window.studentsData = [
         dept: "Information Technology",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sneha",
         activities: [
-            { title: "Google Cloud Sandbox", category: "Technical", date: "May 21, 2024", description: "Certified as Google Cloud Professional Architect.", proof: "record.pdf" }
+            { title: "Google Cloud Sandbox", category: "Technical", date: "May 21, 2024", description: "Certified as Google Cloud Professional Architect.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -303,7 +303,7 @@ window.studentsData = [
         dept: "Mechanical Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kunal",
         activities: [
-            { title: "Thermodynamics Conclave", category: "Technical", date: "Feb 08, 2024", description: "Presented paper on advanced cooling systems.", proof: "abhinay-record.pdf" }
+            { title: "Thermodynamics Conclave", category: "Technical", date: "Feb 08, 2024", description: "Presented paper on advanced cooling systems.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -313,8 +313,8 @@ window.studentsData = [
         dept: "Computer Science",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Shruti",
         activities: [
-            { title: "Debate Society", category: "Non-Technical", date: "Jan 12, 2024", description: "Debate moderator for the central university summit.", proof: "record.pdf" },
-            { title: "Western Vocals Comp", category: "Cultural", date: "March 15, 2024", description: "First place in A-Capella group format.", proof: "abhinay-record.pdf" }
+            { title: "Debate Society", category: "Non-Technical", date: "Jan 12, 2024", description: "Debate moderator for the central university summit.", proof: "storage/cert2.pdf" },
+            { title: "Western Vocals Comp", category: "Cultural", date: "March 15, 2024", description: "First place in A-Capella group format.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -324,7 +324,7 @@ window.studentsData = [
         dept: "Architecture & Design",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Akash",
         activities: [
-            { title: "Origami Workshop", category: "Cultural", date: "Sept 10, 2023", description: "Taught complex paper folding mechanics to juniors.", proof: "record.pdf" }
+            { title: "Origami Workshop", category: "Cultural", date: "Sept 10, 2023", description: "Taught complex paper folding mechanics to juniors.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -334,7 +334,7 @@ window.studentsData = [
         dept: "Business Administration",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ananya",
         activities: [
-            { title: "Marketing Strategy Hackathon", category: "Technical", date: "Nov 30, 2023", description: "Developed a GTM plan for a SaaS startup.", proof: "abhinay-record.pdf" }
+            { title: "Marketing Strategy Hackathon", category: "Technical", date: "Nov 30, 2023", description: "Developed a GTM plan for a SaaS startup.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -344,7 +344,7 @@ window.studentsData = [
         dept: "Social Work",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rishi",
         activities: [
-            { title: "Orphanage Donation Drive", category: "Non-Technical", date: "Oct 02, 2023", description: "Distributed clothing and toys across 3 NGO homes.", proof: "record.pdf" }
+            { title: "Orphanage Donation Drive", category: "Non-Technical", date: "Oct 02, 2023", description: "Distributed clothing and toys across 3 NGO homes.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -354,8 +354,8 @@ window.studentsData = [
         dept: "Bio-Technology",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Nisha",
         activities: [
-            { title: "Agri-Genetics Expo", category: "Technical", date: "April 05, 2024", description: "Showcased drought-resistant crop methodologies.", proof: "abhinay-record.pdf" },
-            { title: "Environment Day Marathon", category: "Non-Technical", date: "June 05, 2024", description: "Finished top 10 in 10KM running race.", proof: "record.pdf" }
+            { title: "Agri-Genetics Expo", category: "Technical", date: "April 05, 2024", description: "Showcased drought-resistant crop methodologies.", proof: "storage/cert1.pdf" },
+            { title: "Environment Day Marathon", category: "Non-Technical", date: "June 05, 2024", description: "Finished top 10 in 10KM running race.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -365,7 +365,7 @@ window.studentsData = [
         dept: "Electrical Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aryan",
         activities: [
-            { title: "Micro-Controller Coding", category: "Technical", date: "Aug 10, 2023", description: "Programmed logic gates for an automated factory line.", proof: "record.pdf" }
+            { title: "Micro-Controller Coding", category: "Technical", date: "Aug 10, 2023", description: "Programmed logic gates for an automated factory line.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -375,8 +375,8 @@ window.studentsData = [
         dept: "Computer Science",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Zara",
         activities: [
-            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Created an AI-driven accessibility app for the deaf.", proof: "abhinay-record.pdf" },
-            { title: "Open Source Fest", category: "Technical", date: "Oct 20, 2023", description: "Top contributor to Linux kernel patches.", proof: "record.pdf" }
+            { title: "Smart India Hackathon (SIH)", category: "Technical", date: "March 12, 2024", description: "Created an AI-driven accessibility app for the deaf.", proof: "storage/cert1.pdf" },
+            { title: "Open Source Fest", category: "Technical", date: "Oct 20, 2023", description: "Top contributor to Linux kernel patches.", proof: "storage/cert2.pdf" }
         ]
     },
     {
@@ -386,7 +386,7 @@ window.studentsData = [
         dept: "Mechanical Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Devansh",
         activities: [
-            { title: "Fluid Dynamics Seminar", category: "Technical", date: "Dec 18, 2023", description: "Guest speaker on advanced propulsion systems.", proof: "record.pdf" }
+            { title: "Fluid Dynamics Seminar", category: "Technical", date: "Dec 18, 2023", description: "Guest speaker on advanced propulsion systems.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -396,7 +396,7 @@ window.studentsData = [
         dept: "Information Technology",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kavya",
         activities: [
-            { title: "UI/UX Design Blitz", category: "Cultural", date: "July 28, 2023", description: "Designed best interactive prototype for a fintech app.", proof: "abhinay-record.pdf" }
+            { title: "UI/UX Design Blitz", category: "Cultural", date: "July 28, 2023", description: "Designed best interactive prototype for a fintech app.", proof: "storage/cert1.pdf" }
         ]
     },
     {
@@ -406,8 +406,8 @@ window.studentsData = [
         dept: "Civil Engineering",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rohan",
         activities: [
-            { title: "Eco-Friendly Material Study", category: "Technical", date: "Feb 22, 2024", description: "Research on using recycled plastic in road works.", proof: "record.pdf" },
-            { title: "Inter-department Cricket", category: "Non-Technical", date: "April 10, 2024", description: "Vice-Captain, highest run scorer.", proof: "abhinay-record.pdf" }
+            { title: "Eco-Friendly Material Study", category: "Technical", date: "Feb 22, 2024", description: "Research on using recycled plastic in road works.", proof: "storage/cert2.pdf" },
+            { title: "Inter-department Cricket", category: "Non-Technical", date: "April 10, 2024", description: "Vice-Captain, highest run scorer.", proof: "storage/cert4.pdf" }
         ]
     },
     {
@@ -417,8 +417,8 @@ window.studentsData = [
         dept: "Electronics",
         avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Priya",
         activities: [
-            { title: "Hardware Debugging Contest", category: "Technical", date: "Sept 05, 2023", description: "Fastest time to debug a faulty motherboard.", proof: "record.pdf" },
-            { title: "Fine Arts Club", category: "Cultural", date: "Nov 15, 2023", description: "Display gallery of modern abstract paintings.", proof: "abhinay-record.pdf" }
+            { title: "Hardware Debugging Contest", category: "Technical", date: "Sept 05, 2023", description: "Fastest time to debug a faulty motherboard.", proof: "storage/cert1.pdf" },
+            { title: "Fine Arts Club", category: "Cultural", date: "Nov 15, 2023", description: "Display gallery of modern abstract paintings.", proof: "storage/cert2.pdf" }
         ]
     }
 ];
