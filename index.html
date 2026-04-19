@@ -30,6 +30,7 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link px-3" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link px-3" href="#explore">Directory</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="#upload">Upload</a></li>
           <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -90,27 +91,147 @@
 
     <div class="search-container mb-5">
       <div class="position-relative">
-        <label for="searchInput" class="visually-hidden">Search students</label>
-        <span class="fas fa-id-card position-absolute top-50 start-0 translate-middle-y ms-4 text-muted"></span>
+        <label for="searchInput" class="visually-hidden">Search students or events</label>
+        <span class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-4 text-muted"></span>
         <input type="text" id="searchInput" class="search-input ps-5"
-          placeholder="Search by student name, roll number, or department...">
+          placeholder="Search for event (e.g., SIH), student, or department...">
       </div>
     </div>
 
-    <div class="row g-4" id="studentGrid">
+    <!-- Category Grid -->
+    <div class="row g-4" id="categoryGrid">
+      <div class="col-md-4">
+        <div class="card text-center border-0 shadow-sm category-card p-4 h-100" style="cursor: pointer; transition: transform 0.2s;" data-category="Technical" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div class="card-body">
+            <span class="fas fa-laptop-code fa-3x text-primary mb-3"></span>
+            <h4 class="fw-bold">Technical</h4>
+            <p class="text-muted small">Hackathons, coding challenges, tech fests.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center border-0 shadow-sm category-card p-4 h-100" style="cursor: pointer; transition: transform 0.2s;" data-category="Non-Technical" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div class="card-body">
+            <span class="fas fa-users fa-3x text-success mb-3"></span>
+            <h4 class="fw-bold">Non-Technical</h4>
+            <p class="text-muted small">Debates, MUNs, social service, sports.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center border-0 shadow-sm category-card p-4 h-100" style="cursor: pointer; transition: transform 0.2s;" data-category="Cultural" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div class="card-body">
+            <span class="fas fa-music fa-3x text-danger mb-3"></span>
+            <h4 class="fw-bold">Cultural</h4>
+            <p class="text-muted small">Dance, music, arts, college fests.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Back Button -->
+    <div id="viewControls" class="d-none mb-4 d-flex align-items-center">
+      <button id="backBtn" class="btn btn-outline-secondary rounded-pill"><i class="fas fa-arrow-left me-2"></i>Back to Categories</button>
+      <h3 id="currentCategoryTitle" class="ms-3 mb-0 fw-bold"></h3>
+    </div>
+
+    <div class="row g-4 d-none" id="studentGrid">
     </div>
   </main>
 
+  <!-- Upload Certificate Section -->
+  <section id="upload" class="container my-5 pt-5 pb-5">
+    <div class="card border-0 shadow-lg" style="border-radius: 20px; overflow: hidden;">
+      <div class="row g-0">
+        <div class="col-md-5 bg-primary text-white p-5 d-flex flex-column justify-content-center">
+          <h2 class="fw-bold mb-4">Submit Your Achievement</h2>
+          <p class="mb-4 text-white-50">Did you recently win a hackathon, participate in a cultural fest, or publish a paper? Upload your certificate here, and it will immediately reflect in the portal.</p>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-3"><i class="fas fa-check-circle me-2 text-success"></i> PDF Certificates Only</li>
+            <li class="mb-3"><i class="fas fa-check-circle me-2 text-success"></i> Details correctly verified</li>
+          </ul>
+        </div>
+        <div class="col-md-7 p-5 bg-white">
+          <form id="uploadForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label text-muted small fw-bold">Full Name</label>
+                <input type="text" class="form-control" id="upName" required placeholder="John Doe">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small fw-bold">Roll Number</label>
+                <input type="text" class="form-control" id="upRoll" required placeholder="CS2024101">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small fw-bold">Department</label>
+                <select class="form-select" id="upDept" required>
+                  <option value="" disabled selected>Select Dept</option>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Information Technology">Information Technology</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering</option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Arts & Design">Arts & Design</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small fw-bold">Event Category</label>
+                <select class="form-select" id="upCategory" required>
+                  <option value="" disabled selected>Select Category</option>
+                  <option value="Technical">Technical</option>
+                  <option value="Non-Technical">Non-Technical</option>
+                  <option value="Cultural">Cultural</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label text-muted small fw-bold">Event Name / Achievement Title</label>
+                <input type="text" class="form-control" id="upTitle" required placeholder="E.g., Winner of Global Hackathon">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small fw-bold">Date of Event</label>
+                <input type="date" class="form-control" id="upDate" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small fw-bold">Upload Proof (PDF limit &lt; 2MB)</label>
+                <input type="file" class="form-control" id="upProof" accept="application/pdf" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label text-muted small fw-bold">Short Description</label>
+                <textarea class="form-control" id="upDesc" rows="3" required placeholder="Describe your achievement briefly..."></textarea>
+              </div>
+              <div class="col-12 mt-4 text-end">
+                <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm">Submit Achievement <i class="fas fa-paper-plane ms-2"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="modalStudentName" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content border-0 shadow-lg" style="border-radius: 24px;">
-        <div class="modal-header border-0 pb-0">
-          <h5 class="modal-title fw-bold" id="modalStudentName">Achievement Log</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 24px; overflow: hidden;">
+        <div class="modal-header border-0 pb-0 mt-3 ms-2">
+          <h5 class="modal-title fw-bold ms-2" id="modalStudentName">Achievement Log</h5>
+          <button type="button" class="btn-close me-3" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-4" id="modalActivityBody">
+        <div class="modal-body p-0">
+          <div class="row g-0">
+            <!-- Left Side: Activity List -->
+            <div class="col-md-5 p-4" style="max-height: 600px; overflow-y: auto;" id="modalActivityBody">
+            </div>
+            <!-- Right Side: PDF Preview -->
+            <div class="col-md-7 bg-light p-4 d-flex flex-column" style="min-height: 600px;">
+              <h6 class="fw-bold mb-3 text-secondary">Document Proof Preview</h6>
+              <div id="pdfContainer" class="flex-grow-1 bg-white border rounded d-flex align-items-center justify-content-center shadow-sm">
+                <p class="text-muted">Select an activity to preview proof.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-footer border-0">
+        <div class="modal-footer border-0 bg-white">
           <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
@@ -159,6 +280,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="storage/stu-records.js"></script>
   <script src="script.js"></script>
 </body>
 

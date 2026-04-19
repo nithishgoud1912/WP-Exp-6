@@ -1,74 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const students = [
-        {
-            id: 1,
-            name: "Alex Rivera",
-            roll: "CS2024001",
-            dept: "Computer Science",
-            avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
-            activities: [
-                { title: "National Coding Blitz 2024", category: "Technical", date: "March 12, 2024", description: "Secured Gold Medal in a 48-hour AI marathon. Developed a scalable inventory system." },
-                { title: "Open Source Contributor", category: "Technical", date: "Feb 05, 2024", description: "Merged 15+ PRs in major React libraries." }
-            ]
-        },
-        {
-            id: 2,
-            name: "Sarah Jenkins",
-            roll: "EN2024045",
-            dept: "Environmental Engineering",
-            avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
-            activities: [
-                { title: "Green Campus Drive", category: "Community", date: "Feb 05, 2024", description: "Successfully led the reforestation movement by planting 500+ indigenous trees." },
-                { title: "Eco-Summit Speaker", category: "Leadership", date: "Jan 12, 2024", description: "Presented a paper on sustainable urban drainage systems." }
-            ]
-        },
-        {
-            id: 3,
-            name: "David Chang",
-            roll: "AR2024012",
-            dept: "Architecture & Design",
-            avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
-            activities: [
-                { title: "Modern Arts Exposition", category: "Arts", date: "April 01, 2024", description: "Curated a digital gallery featuring 45 student photographers." },
-                { title: "Urban Sketching Award", category: "Arts", date: "Dec 15, 2023", description: "First prize in city-wide landscape sketching competition." }
-            ]
-        },
-        {
-            id: 4,
-            name: "Maria Garcia",
-            roll: "PS2024088",
-            dept: "Political Science",
-            avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
-            activities: [
-                { title: "Model United Nations", category: "Leadership", date: "May 15, 2024", description: "Nominated as 'Outstanding Delegate' at Global MUN 2024." },
-                { title: "Debate Championship", category: "Leadership", date: "March 22, 2024", description: "Finalist in the Inter-State Bilingual Debate." }
-            ]
-        },
-        {
-            id: 5,
-            name: "Kevin Patel",
-            roll: "SW2024102",
-            dept: "Social Work",
-            avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kevin",
-            activities: [
-                { title: "Food for All Initiative", category: "Volunteering", date: "Feb 28, 2024", description: "Organized a drive distributing 2,500+ meals." },
-                { title: "Literacy Program", category: "Volunteering", date: "Oct 10, 2023", description: "Taught basic computing to 50+ elderly citizens." }
-            ]
-        }
-    ];
+    // Read students from the global window.studentsData injected by stu-records.js
+    let students = window.studentsData || [];
 
+    // Retrieve locally saved students from localStorage
+    try {
+        const localData = localStorage.getItem('userModifiedStudents');
+        if (localData) {
+            students = JSON.parse(localData);
+        }
+    } catch (e) {
+        console.error("Could not parse local students data", e);
+    }
+
+    const categoryGrid = document.getElementById("categoryGrid");
+    const viewControls = document.getElementById("viewControls");
+    const backBtn = document.getElementById("backBtn");
+    const currentCategoryTitle = document.getElementById("currentCategoryTitle");
     const studentGrid = document.getElementById("studentGrid");
+    
     const searchInput = document.getElementById("searchInput");
     const typingElement = document.getElementById("typing-text");
     const activityModal = new bootstrap.Modal(document.getElementById('activityModal'));
     const modalBody = document.getElementById('modalActivityBody');
     const modalStudentName = document.getElementById('modalStudentName');
+    const pdfContainer = document.getElementById("pdfContainer");
+    const uploadForm = document.getElementById("uploadForm");
 
     const heroSubtitle = "Faculty Portal: Tracking student excellence and extraordinary achievements across departments.";
     let speed = 50;
     let index = 0;
 
     function handleTyping() {
+        if (!typingElement) return;
         if (index < heroSubtitle.length) {
             typingElement.textContent += heroSubtitle.charAt(index);
             index++;
@@ -77,13 +40,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     setTimeout(handleTyping, 500);
 
-    function renderStudents(filteredStudents = students) {
+    // Initial state: show categories, hide students
+    function showCategories() {
+        categoryGrid.classList.remove("d-none");
+        studentGrid.classList.add("d-none");
+        viewControls.classList.add("d-none");
+        viewControls.classList.remove("d-flex");
+        searchInput.value = "";
+    }
+
+    // Show students for a specific category
+    function showStudentsByCategory(category) {
+        // filter students who have at least one activity in that category
+        const filtered = students.filter(s => s.activities.some(a => a.category.toLowerCase() === category.toLowerCase()));
+        
+        categoryGrid.classList.add("d-none");
+        studentGrid.classList.remove("d-none");
+        viewControls.classList.remove("d-none");
+        viewControls.classList.add("d-flex");
+        currentCategoryTitle.textContent = `${category} Achievements`;
+        
+        renderStudents(filtered, category);
+    }
+
+    // Category click handler
+    document.querySelectorAll(".category-card").forEach(card => {
+        card.addEventListener("click", () => {
+            const category = card.getAttribute("data-category");
+            showStudentsByCategory(category);
+        });
+    });
+
+    if (backBtn) {
+        backBtn.addEventListener("click", showCategories);
+    }
+
+    function renderStudents(filteredStudents, highlightCategory = null) {
         studentGrid.innerHTML = "";
 
         if (filteredStudents.length === 0) {
             studentGrid.innerHTML = `
-                <div class="col-12 empty-state">
-                    <i class="fas fa-search"></i>
+                <div class="col-12 empty-state p-5 text-center">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
                     <h5 class="fw-bold mb-2">No Students Found</h5>
                     <p class="text-muted">Try adjusting your search query or clearing the filter.</p>
                 </div>
@@ -95,20 +93,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const card = document.createElement("div");
             card.className = "col-md-6 col-lg-4";
             card.innerHTML = `
-                <div class="student-card" data-student-id="${student.id}">
+                <div class="student-card shadow-sm p-4 rounded bg-white h-100 border" data-student-id="${student.id}" style="cursor: pointer; transition: box-shadow 0.2s;" onmouseover="this.classList.add('shadow')" onmouseout="this.classList.remove('shadow')">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="${student.avatar}" alt="Avatar of ${student.name}" class="student-avatar me-3">
+                        <img src="${student.avatar}" alt="Avatar of ${student.name}" class="student-avatar me-3 rounded-circle border" width="60" height="60">
                         <div>
                             <h5 class="mb-0 fw-bold">${student.name}</h5>
                             <small class="text-muted">${student.roll}</small>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <span class="badge-custom small">${student.dept}</span>
+                        <span class="badge bg-primary bg-opacity-10 text-primary small border border-primary border-opacity-25">${student.dept}</span>
                     </div>
                     <div class="d-flex justify-content-between align-items-center pt-3 border-top">
-                        <span class="small text-muted"><i class="fas fa-medal me-2"></i>${student.activities.length} Activities</span>
-                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3">View Profile</button>
+                        <span class="small text-muted"><i class="fas fa-medal me-2 text-warning"></i>${student.activities.length} Events</span>
+                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3">View Proofs</button>
                     </div>
                 </div>
             `;
@@ -124,32 +122,162 @@ document.addEventListener("DOMContentLoaded", () => {
         const student = students.find(s => s.id === studentId);
         if (!student) return;
 
-        modalStudentName.textContent = `${student.name}'s Achievement Log`;
-        modalBody.innerHTML = student.activities.map(act => `
-            <div class="activity-item-log mb-4 p-3 rounded-4 border">
+        modalStudentName.textContent = `${student.name}`;
+        
+        let activitiesHtml = student.activities.map((act, idx) => `
+            <div class="activity-item-log mb-3 p-3 rounded-3 border activity-clickable" data-proof="${act.proof}" style="cursor:pointer; transition: background 0.2s;">
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <h6 class="fw-bold mb-0 text-primary">${act.title}</h6>
-                    <span class="badge bg-light text-primary border">${act.category}</span>
+                    <span class="badge bg-light text-secondary border">${act.category}</span>
                 </div>
                 <p class="small text-muted mb-2">${act.description}</p>
-                <div class="small text-muted">
-                    <i class="far fa-calendar-alt me-2"></i>${act.date}
+                <div class="d-flex justify-content-between align-items-center small text-muted">
+                    <span><i class="far fa-calendar-alt me-2"></i>${act.date}</span>
+                    <span class="text-danger fw-bold"><i class="fas fa-file-pdf me-1"></i> Preview Proof</span>
                 </div>
             </div>
-        `);
+        `).join("");
+        
+        modalBody.innerHTML = activitiesHtml;
+        
+        if (student.activities.length > 0) {
+            loadPdf(student.activities[0].proof);
+        } else {
+            pdfContainer.innerHTML = `<p class="text-muted">No proof available.</p>`;
+        }
+
+        modalBody.querySelectorAll(".activity-clickable").forEach(el => {
+            el.addEventListener("click", () => {
+                modalBody.querySelectorAll(".activity-clickable").forEach(sib => sib.classList.remove("bg-primary", "bg-opacity-10"));
+                el.classList.add("bg-primary", "bg-opacity-10");
+                const proof = el.getAttribute("data-proof");
+                loadPdf(proof);
+            });
+        });
+
+        const firstAct = modalBody.querySelector(".activity-clickable");
+        if (firstAct) firstAct.classList.add("bg-primary", "bg-opacity-10");
 
         activityModal.show();
     });
 
+    function loadPdf(pdfPath) {
+        if (!pdfPath) {
+             pdfContainer.innerHTML = `<p class="text-muted">No proof available.</p>`;
+             return;
+        }
+        // Load the PDF via iframe
+        pdfContainer.innerHTML = `<iframe src="${pdfPath}" width="100%" height="100%" style="border:none; min-height: 500px; border-radius: 8px;"></iframe>`;
+    }
+
     searchInput.addEventListener("input", (e) => {
         const query = e.target.value.toLowerCase().trim();
-        const filtered = students.filter(s =>
-            s.name.toLowerCase().includes(query) ||
-            s.roll.toLowerCase().includes(query) ||
-            s.dept.toLowerCase().includes(query)
-        );
+        
+        if (query === "") {
+            showCategories();
+            return;
+        }
+
+        // If typing, hide categories, show student grid with search results
+        categoryGrid.classList.add("d-none");
+        studentGrid.classList.remove("d-none");
+        viewControls.classList.add("d-none");
+        viewControls.classList.remove("d-flex");
+
+        // Search logic: check if student name, roll, dept matches OR event title
+        const filtered = students.filter(s => {
+            const matchesBasic = s.name.toLowerCase().includes(query) ||
+                                 s.roll.toLowerCase().includes(query) ||
+                                 s.dept.toLowerCase().includes(query);
+            
+            const matchesEvent = s.activities.some(act => act.title.toLowerCase().includes(query) || act.category.toLowerCase().includes(query));
+            
+            return matchesBasic || matchesEvent;
+        });
+        
         renderStudents(filtered);
     });
 
-    renderStudents();
+    // Handle Upload Achievement
+    if (uploadForm) {
+        uploadForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const fileInput = document.getElementById("upProof");
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Please select a PDF file.");
+                return;
+            }
+
+            // Optional: Limit file size to avoid LocalStorage Quota Exceeded (e.g., 2MB)
+            // if (file.size > 2000000) {
+            //     alert("File is too large! Please upload a PDF smaller than ~2MB.");
+            //     return;
+            // }
+
+            // Read as data URL to persist the PDF inside LocalStorage correctly.
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const base64Proof = event.target.result;
+                
+                const deptSelect = document.getElementById("upDept");
+                const catSelect = document.getElementById("upCategory");
+                
+                const upRoll = document.getElementById("upRoll").value.trim();
+                const upName = document.getElementById("upName").value.trim();
+                const upTitle = document.getElementById("upTitle").value.trim();
+                const upDate = document.getElementById("upDate").value;
+                const upDesc = document.getElementById("upDesc").value.trim();
+                const upDeptText = deptSelect.options[deptSelect.selectedIndex].text;
+                const upCatText = catSelect.options[catSelect.selectedIndex].text;
+
+                const newActivity = {
+                    title: upTitle,
+                    category: upCatText,
+                    date: upDate,
+                    description: upDesc,
+                    proof: base64Proof
+                };
+
+                // Check if student exists
+                let existingStudent = students.find(s => s.roll.toLowerCase() === upRoll.toLowerCase());
+
+                if (existingStudent) {
+                    existingStudent.activities.push(newActivity);
+                } else {
+                    const newStudent = {
+                        id: Date.now(),
+                        name: upName,
+                        roll: upRoll,
+                        dept: upDeptText,
+                        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(upName)}`,
+                        activities: [newActivity]
+                    };
+                    students.push(newStudent);
+                }
+
+                // Attempt to save state locally
+                try {
+                    localStorage.setItem('userModifiedStudents', JSON.stringify(students));
+                    alert("Achievement successfully submitted and saved locally!");
+                    
+                    uploadForm.reset();
+                    
+                    // Route back to categories view and render
+                    document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
+                    showStudentsByCategory(upCatText);
+
+                } catch (err) {
+                    // LocalStorage limits are around ~5MB. If a large PDF is uploaded, it will fail here.
+                    alert("The PDF size is too large for permanent browser local caching. It has been added temporarily for this active session!");
+                    uploadForm.reset();
+                    document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
+                    showStudentsByCategory(upCatText);
+                }
+            };
+            
+            reader.readAsDataURL(file);
+        });
+    }
 });
