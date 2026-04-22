@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroSubtitle = "Faculty Portal: Tracking student excellence and extraordinary achievements across departments.";
     let speed = 50;
     let index = 0;
+    let currentCategory = null;  // Track the currently selected category
 
     function handleTyping() {
         if (!typingElement) return;
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial state: show categories, hide students
     function showCategories() {
+        currentCategory = null;  // Reset category when going back
         categoryGrid.classList.remove("d-none");
         studentGrid.classList.add("d-none");
         viewControls.classList.add("d-none");
@@ -51,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show students for a specific category
     function showStudentsByCategory(category) {
+        currentCategory = category;  // Set the current category
         // filter students who have at least one activity in that category
         const filtered = students.filter(s => s.activities.some(a => a.category.toLowerCase() === category.toLowerCase()));
         
@@ -184,8 +187,15 @@ document.addEventListener("DOMContentLoaded", () => {
         viewControls.classList.add("d-none");
         viewControls.classList.remove("d-flex");
 
+        // Determine which students to search in
+        let searchableStudents = students;
+        if (currentCategory) {
+            // If a category is selected, only search within that category's students
+            searchableStudents = students.filter(s => s.activities.some(a => a.category.toLowerCase() === currentCategory.toLowerCase()));
+        }
+
         // Search logic: check if student name, roll, dept matches OR event title
-        const filtered = students.filter(s => {
+        const filtered = searchableStudents.filter(s => {
             const matchesBasic = s.name.toLowerCase().includes(query) ||
                                  s.roll.toLowerCase().includes(query) ||
                                  s.dept.toLowerCase().includes(query);
