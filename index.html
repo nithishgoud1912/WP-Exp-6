@@ -87,6 +87,14 @@
       <h2 class="display-6 fw-bold mb-3">Student Performance Registry</h2>
       <p class="text-muted">Faculty View: Select a student to review their participation and accomplishments.
       </p>
+      <div class="filter-toggle-container mt-4" id="filterToggle">
+        <button type="button" class="filter-toggle-btn active" data-mode="students">
+          <i class="fas fa-user-graduate me-2"></i>By Students
+        </button>
+        <button type="button" class="filter-toggle-btn" data-mode="events">
+          <i class="fas fa-calendar-check me-2"></i>By Events
+        </button>
+      </div>
     </div>
 
     <div class="search-container mb-5">
@@ -129,10 +137,12 @@
       </div>
     </div>
 
-    <!-- Student Back Button -->
-    <div id="viewControls" class="d-none mb-4 d-flex align-items-center">
+    <!-- View Controls Bar -->
+    <div id="viewControls" class="d-none mb-4 d-flex align-items-center flex-wrap gap-2">
       <button id="backBtn" class="btn btn-outline-secondary rounded-pill"><i class="fas fa-arrow-left me-2"></i>Back to Categories</button>
       <h3 id="currentCategoryTitle" class="ms-3 mb-0 fw-bold"></h3>
+      <span id="countBadge" class="badge rounded-pill ms-2" style="font-size:0.85rem;"></span>
+      <button id="printBtn" class="btn btn-outline-danger rounded-pill ms-auto d-none"><i class="fas fa-print me-2"></i>Print List</button>
     </div>
 
     <div class="row g-4 d-none" id="studentGrid">

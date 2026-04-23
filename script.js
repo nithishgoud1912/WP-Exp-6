@@ -25,11 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalStudentName = document.getElementById('modalStudentName');
     const pdfContainer = document.getElementById("pdfContainer");
     const uploadForm = document.getElementById("uploadForm");
+    const countBadge = document.getElementById("countBadge");
+    const printBtn = document.getElementById("printBtn");
 
     const heroSubtitle = "Faculty Portal: Tracking student excellence and extraordinary achievements across departments.";
     let speed = 50;
     let index = 0;
-    let currentCategory = null;  // Track the currently selected category
+    let currentCategory = null;
+    let filterMode = "students";   // "students" or "events"
+    let currentView = "categories"; // "categories" | "events" | "students"
+    let currentEvent = null;
 
     function handleTyping() {
         if (!typingElement) return;
@@ -41,20 +46,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     setTimeout(handleTyping, 500);
 
-    // Initial state: show categories, hide students
+    // ─── Filter Toggle Handler ───
+    document.querySelectorAll(".filter-toggle-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".filter-toggle-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            filterMode = btn.dataset.mode;
+            showCategories();
+        });
+    });
+
+    // ─── View: Categories (Home) ───
     function showCategories() {
-        currentCategory = null;  // Reset category when going back
+        currentCategory = null;
+        currentView = "categories";
+        currentEvent = null;
         categoryGrid.classList.remove("d-none");
         studentGrid.classList.add("d-none");
         viewControls.classList.add("d-none");
         viewControls.classList.remove("d-flex");
         searchInput.value = "";
+        printBtn.classList.add("d-none");
+        countBadge.textContent = "";
     }
 
-    // Show students for a specific category
+    // ─── View: Students by Category (Students Mode) ───
     function showStudentsByCategory(category) {
-        currentCategory = category;  // Set the current category
-        // filter students who have at least one activity in that category
+        currentCategory = category;
+        currentView = "students";
+        currentEvent = null;
         const filtered = students.filter(s => s.activities.some(a => a.category.toLowerCase() === category.toLowerCase()));
         
         categoryGrid.classList.add("d-none");
@@ -62,22 +82,121 @@ document.addEventListener("DOMContentLoaded", () => {
         viewControls.classList.remove("d-none");
         viewControls.classList.add("d-flex");
         currentCategoryTitle.textContent = `${category} Achievements`;
+        backBtn.innerHTML = `<i class="fas fa-arrow-left me-2"></i>Back to Categories`;
+        countBadge.textContent = `${filtered.length} Students`;
+        countBadge.className = "badge rounded-pill ms-2 bg-primary";
+        printBtn.classList.add("d-none");
         
         renderStudents(filtered, category);
     }
 
-    // Category click handler
+    // ─── View: Events List (Events Mode) ───
+    function showEventsByCategory(category) {
+        currentCategory = category;
+        currentView = "events";
+        currentEvent = null;
+
+        // Collect unique events in this category with participant count
+        const eventsMap = {};
+        students.forEach(s => {
+            s.activities.forEach(a => {
+                if (a.category.toLowerCase() === category.toLowerCase()) {
+                    if (!eventsMap[a.title]) {
+                        eventsMap[a.title] = { title: a.title, category: a.category, count: 0, description: a.description };
+                    }
+                    eventsMap[a.title].count++;
+                }
+            });
+        });
+
+        categoryGrid.classList.add("d-none");
+        studentGrid.classList.remove("d-none");
+        viewControls.classList.remove("d-none");
+        viewControls.classList.add("d-flex");
+        const eventsList = Object.values(eventsMap);
+        currentCategoryTitle.textContent = `${category} Events`;
+        backBtn.innerHTML = `<i class="fas fa-arrow-left me-2"></i>Back to Categories`;
+        countBadge.textContent = `${eventsList.length} Events`;
+        countBadge.className = "badge rounded-pill ms-2 bg-success";
+        printBtn.classList.add("d-none");
+
+        renderEvents(eventsList, category);
+    }
+
+    // ─── View: Students for a Specific Event (Events Mode, Level 2) ───
+    function showStudentsByEvent(eventTitle, category) {
+        currentEvent = eventTitle;
+        currentView = "students";
+
+        const filtered = students.filter(s =>
+            s.activities.some(a => a.title === eventTitle && a.category.toLowerCase() === category.toLowerCase())
+        );
+
+        currentCategoryTitle.textContent = eventTitle;
+        backBtn.innerHTML = `<i class="fas fa-arrow-left me-2"></i>Back to ${category} Events`;
+        countBadge.textContent = `${filtered.length} Students`;
+        countBadge.className = "badge rounded-pill ms-2 bg-primary";
+        printBtn.classList.remove("d-none");
+
+        renderStudents(filtered, category);
+    }
+
+    // ─── Print Button Handler ───
+    if (printBtn) {
+        printBtn.addEventListener("click", () => {
+            if (!currentEvent || !currentCategory) return;
+            const filtered = students.filter(s =>
+                s.activities.some(a => a.title === currentEvent && a.category.toLowerCase() === currentCategory.toLowerCase())
+            );
+            const rows = filtered.map((s, i) => `<tr><td>${i + 1}</td><td>${s.name}</td><td>${s.roll}</td><td>${s.dept}</td></tr>`).join("");
+            const printWindow = window.open("", "_blank");
+            printWindow.document.write(`
+                <html><head><title>Print - ${currentEvent}</title>
+                <style>
+                    body { font-family: 'Inter', Arial, sans-serif; padding: 40px; color: #1e293b; }
+                    h2 { margin-bottom: 4px; } p { color: #64748b; margin-bottom: 20px; }
+                    table { width: 100%; border-collapse: collapse; }
+                    th, td { border: 1px solid #e2e8f0; padding: 10px 14px; text-align: left; }
+                    th { background: #4f46e5; color: #fff; }
+                    tr:nth-child(even) { background: #f8fafc; }
+                    .footer { margin-top: 30px; font-size: 0.85rem; color: #94a3b8; }
+                </style></head><body>
+                <h2>${currentEvent}</h2>
+                <p>Category: ${currentCategory} &bull; Total Participants: ${filtered.length}</p>
+                <table><thead><tr><th>#</th><th>Student Name</th><th>Roll Number</th><th>Department</th></tr></thead>
+                <tbody>${rows}</tbody></table>
+                <p class="footer">Generated from Student Achievement Portal &bull; ${new Date().toLocaleDateString()}</p>
+                </body></html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        });
+    }
+
+    // ─── Category Card Click ───
     document.querySelectorAll(".category-card").forEach(card => {
         card.addEventListener("click", () => {
             const category = card.getAttribute("data-category");
-            showStudentsByCategory(category);
+            if (filterMode === "events") {
+                showEventsByCategory(category);
+            } else {
+                showStudentsByCategory(category);
+            }
         });
     });
 
+    // ─── Back Button (supports multi-level in events mode) ───
     if (backBtn) {
-        backBtn.addEventListener("click", showCategories);
+        backBtn.addEventListener("click", () => {
+            if (currentView === "students" && filterMode === "events" && currentEvent) {
+                showEventsByCategory(currentCategory);
+            } else {
+                showCategories();
+            }
+        });
     }
 
+    // ─── Render: Student Cards ───
     function renderStudents(filteredStudents, highlightCategory = null) {
         studentGrid.innerHTML = "";
 
@@ -117,7 +236,58 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // ─── Render: Event Cards ───
+    function renderEvents(events, category) {
+        studentGrid.innerHTML = "";
+
+        if (events.length === 0) {
+            studentGrid.innerHTML = `
+                <div class="col-12 empty-state p-5 text-center">
+                    <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
+                    <h5 class="fw-bold mb-2">No Events Found</h5>
+                    <p class="text-muted">No events recorded in this category yet.</p>
+                </div>
+            `;
+            return;
+        }
+
+        const iconMap = { "technical": "fa-laptop-code", "non-technical": "fa-users", "cultural": "fa-music" };
+        const colorMap = { "technical": "primary", "non-technical": "success", "cultural": "danger" };
+        const icon = iconMap[category.toLowerCase()] || "fa-calendar";
+        const color = colorMap[category.toLowerCase()] || "primary";
+
+        events.forEach(event => {
+            const card = document.createElement("div");
+            card.className = "col-md-6 col-lg-4";
+            card.innerHTML = `
+                <div class="event-card shadow-sm p-4 bg-white h-100" data-event-title="${event.title}" data-event-category="${category}">
+                    <div class="event-icon-circle bg-${color} bg-opacity-10 text-${color} mb-3">
+                        <i class="fas ${icon}"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">${event.title}</h5>
+                    <p class="text-muted small mb-3">${event.description}</p>
+                    <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                        <span class="badge bg-${color} bg-opacity-10 text-${color} border border-${color} border-opacity-25">${event.category}</span>
+                        <span class="small fw-bold text-${color}"><i class="fas fa-users me-1"></i>${event.count} Participant${event.count > 1 ? 's' : ''}</span>
+                    </div>
+                </div>
+            `;
+            studentGrid.appendChild(card);
+        });
+    }
+
+    // ─── Grid Click Handler (handles both event cards and student cards) ───
     studentGrid.addEventListener("click", (e) => {
+        // Handle event card clicks (events mode)
+        const eventCard = e.target.closest(".event-card");
+        if (eventCard && currentView === "events") {
+            const eventTitle = eventCard.dataset.eventTitle;
+            const category = eventCard.dataset.eventCategory;
+            showStudentsByEvent(eventTitle, category);
+            return;
+        }
+
+        // Handle student card clicks
         const card = e.target.closest(".student-card");
         if (!card) return;
 
